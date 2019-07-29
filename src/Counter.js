@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import store from './store'
 
 class Counter extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      store: store.getState()
+    };
   }
   render() {
+    const {currentValue} = this.state.store
     return (
       <div className="app">
         <section className="counter">
-          <h1 className="counter__current-value">{0}</h1>
+          <h1 className="counter__current-value">{currentValue}</h1>
           <div className="counter__button-wrapper">
             <button
               className="counter__button increment-one"
@@ -53,7 +57,7 @@ class Counter extends Component {
           </div>
         </section>
         <section className="state">
-          <pre>{JSON.stringify(this.state, null, 2)}</pre>
+          <pre>{JSON.stringify(this.state.store, null, 2)}</pre>
         </section>
       </div>
     );
